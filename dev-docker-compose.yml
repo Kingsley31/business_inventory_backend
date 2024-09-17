@@ -1,0 +1,29 @@
+version: "3.8"
+
+networks:
+  business_Inventory_net:
+    external: true
+services:
+  business_Inventory_backend_dev:
+    image: nestjsdevenv
+    ports:
+      - 3000:3000
+    volumes:
+      - /Users/Kingsley/Emissary_Soft_Developer/business_inventory_backend:/app
+    networks:
+      - business_Inventory_net
+  db:
+    image: postgres
+    volumes:
+      - /Users/Kingsley/Emissary_Soft_Developer/business_inventory_backend/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=Y3SDpqQK
+    networks:
+      - business_Inventory_net
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 6112:8080
+    networks:
+      - business_Inventory_net

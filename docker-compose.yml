@@ -1,0 +1,21 @@
+version: "3.8"
+
+networks:
+  business_Inventory_net:
+    external: true
+services:
+  app:
+    image: ghcr.io/business_Inventory/business_Inventory
+    environment:
+      - DATABASE_HOST=${DATABASE_HOST}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USER=${DATABASE_USER}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - DATABASE_PORT=${DATABASE_PORT}
+      - PORT=${PORT}
+      - JWT_SECRETE=${JWT_SECRETE}
+    restart: always
+    deploy:
+      replicas: 1
+    networks:
+      - business_Inventory_net
